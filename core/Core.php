@@ -37,15 +37,21 @@ class Core{
                  $params = $url;
              }
 
-             print_r($url);
+             //print_r($url);
         }else{
             $currentController = 'homeController';
             $currentAction = 'index';
         }
+
+        $c = new $currentController();
+        // $c = classe e $currentAction é a action
+        //ao invés de instanciarmos a classe, usamos o call_user_func_array para que tudo fique dinamico, pq se instanciarmos diretamente a classe, não conseguimos passar os parametros
+        call_user_func_array(array($c, $currentAction), $params);
+
         
-        echo "<hr>";
+        /*echo "<hr>";
         echo "CONTROLLER: ".$currentController."<br>";
         echo "ACTION: ".$currentAction."<br>";
-        echo "PARAMS: ".print_r($params, true)."<br>";
+        echo "PARAMS: ".print_r($params, true)."<br>";*/
     }
 }
